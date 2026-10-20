@@ -21,7 +21,7 @@
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.55;
@@ -66,22 +66,37 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   }
   h2 { margin: 0 0 0.75rem; font-size: 1.35rem; color: var(--accent); }
-  h3 { margin: 1.25rem 0 0.5rem; font-size: 1.05rem; }
-  .video-wrap {
+  .video-card {
+    display: block;
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    margin: 1rem 0;
     border-radius: 12px;
     overflow: hidden;
+    margin: 1rem 0;
     border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    background: #111;
   }
-  .video-wrap iframe {
+  .video-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .video-card .play {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: 0;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    backdrop-filter: blur(4px);
   }
+  .video-card:hover .play { background: var(--accent); color: #000; }
   .demo-box {
     background: var(--surface2);
     border-radius: 12px;
@@ -112,7 +127,7 @@
     margin: 0.3rem 0.3rem 0.3rem 0;
   }
   .btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-  .checklist li { margin: 0.4rem 0; }
+  .checklist li { margin: 0.4rem 0; cursor: pointer; }
   .ladder {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 1fr 1.2fr;
@@ -141,6 +156,7 @@
   }
   .success-toast.show { opacity: 1; }
   footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; }
+  .note { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
 </style>
 </head>
 <body>
@@ -163,9 +179,11 @@ const stages = [
       <div class="card">
         <h2>Generation is free. Judgment is the job.</h2>
         <p>"Design Theater" showed ~25% of the rationales generative UI tools give are not implemented (34% for functional requirements). Most designers review pixels. You review truth.</p>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/x20QeqQOCpk" title="Product design skills" allowfullscreen></iframe>
-        </div>
+        <a class="video-card" href="https://www.youtube.com/watch?v=x20QeqQOCpk" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/x20QeqQOCpk/hqdefault.jpg" alt="Product design skills video">
+          <div class="play">Watch on YouTube</div>
+        </a>
+        <div class="note">The only 5 product design skills that matter (Jesse Showalter)</div>
       </div>
       <div class="card">
         <h2>Interactive checklist</h2>
@@ -215,9 +233,10 @@ const stages = [
           <span class="tier write">Write — once per session</span>
           <span class="tier destructive">Destructive — every time</span>
         </div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/U7Z9fZn7rFg" title="Agentic patterns" allowfullscreen></iframe>
-        </div>
+        <a class="video-card" href="https://www.youtube.com/watch?v=U7Z9fZn7rFg" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/U7Z9fZn7rFg/hqdefault.jpg" alt="Agentic patterns">
+          <div class="play">Watch on YouTube</div>
+        </a>
       </div>
     `
   },
@@ -246,9 +265,10 @@ const stages = [
     content: `
       <div class="card">
         <h2>Three FX exposures — different UI for each</h2>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/hBa9ckn0Ye0" title="Currency risk" allowfullscreen></iframe>
-        </div>
+        <a class="video-card" href="https://www.youtube.com/watch?v=hBa9ckn0Ye0" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/hBa9ckn0Ye0/hqdefault.jpg" alt="Currency risk">
+          <div class="play">Watch on YouTube</div>
+        </a>
         <ul>
           <li><strong>Transactional</strong> — real cash between invoice and settlement. Forwards / options.</li>
           <li><strong>Translational</strong> — accounting consolidation. Non-cash but hits reported numbers.</li>
@@ -271,9 +291,10 @@ const stages = [
           <div>8–30 days</div><div>390</div><div>1,050</div><div class="neg">−660</div><div class="neg">−1,260</div>
         </div>
         <p>30-day shortfall of 1,260. LCR measures high-quality liquid assets against this. Behavioral assumptions (sticky non-maturity deposits) are capped by regulators.</p>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/_RM0DNV1aPY" title="Liquidity management" allowfullscreen></iframe>
-        </div>
+        <a class="video-card" href="https://www.youtube.com/watch?v=_RM0DNV1aPY" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/_RM0DNV1aPY/hqdefault.jpg" alt="Liquidity management">
+          <div class="play">Watch on YouTube</div>
+        </a>
       </div>
       <div class="card">
         <h2>Why this changes everything</h2>
