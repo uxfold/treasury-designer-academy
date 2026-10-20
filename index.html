@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treasury Designer Academy</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --surface: #1a1d24;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --accent: #4fc3f7;
+    --success: #66bb6a;
+    --warn: #ffa726;
+    --danger: #ef5350;
+    --border: #2a2e36;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  h1 { margin: 0; font-size: 1.5rem; }
+  .subtitle { color: var(--muted); font-size: 0.9rem; }
+  nav {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .stage-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .stage-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+  .stage-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  main { max-width: 900px; margin: 0 auto; padding: 2rem; }
+  .lesson { background: var(--surface); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+  h2 { margin-top: 0; color: var(--accent); }
+  h3 { color: var(--text); }
+  .formula { background: #000; padding: 1rem; border-radius: 8px; font-family: monospace; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th, td { border: 1px solid var(--border); padding: 0.5rem; text-align: left; }
+  th { background: #222; }
+  .quiz { background: #1e2229; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+  button.primary { background: var(--accent); color: #000; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+  .progress { height: 6px; background: #333; border-radius: 3px; margin: 1rem 0; }
+  .progress-bar { height: 100%; background: var(--success); width: 0%; transition: width 0.3s; }
+  .video { margin: 1rem 0; }
+  .video a { color: var(--accent); }
+  .component-demo { border: 1px dashed var(--border); padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+  .tool-card { background: #222; padding: 0.8rem; border-radius: 6px; margin: 0.5rem 0; }
+  .tier-badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .tier-read { background: #555; }
+  .tier-write { background: #1976d2; }
+  .tier-destructive { background: #d32f2f; }
+  .hidden { display: none; }
+  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Treasury Designer Academy</h1>
+  <div class="subtitle">Stage-based deep dive: AI Evaluation → Agentic Components & Orchestration → Treasury Domain Mastery</div>
+  <div class="progress"><div class="progress-bar" id="progress"></div></div>
+</header>
+<nav id="nav"></nav>
+<main id="content"></main>
+<footer>Built for designers who want to sit with CFOs and understand why a hedge ratio or duration gap matters before drawing a single pixel. Research compiled October 2026.</footer>
+
+<script>
+const stages = [
+  {
+    id: 1,
+    title: "Stage 1: Evaluating AI Outputs",
+    unlocked: true,
+    content: `
+      <div class="lesson">
+        <h2>Why evaluation is the new core skill</h2>
+        <p>In 2026, generating a polished dashboard takes minutes. Judging whether it is right takes the designer. "Design Theater" (arXiv 2607.22928) found that ~25% of the rationales generative UI tools give are not implemented, rising to 34% for functional requirements. Tools recognize only about half the UX principles in the prompt.</p>
+        <p>Your treasury domain knowledge becomes the ground truth that most designers lack.</p>
+      </div>
+      <div class="lesson">
+        <h2>The practical checklist (distilled from 2026 reviews)</h2>
+        <ol>
+          <li><strong>Tokens only.</strong> No hardcoded hex, no off-scale Tailwind. Every color from the system.</li>
+          <li><strong>Spacing scale.</strong> 4/8px increments. No "looks right" custom values.</li>
+          <li><strong>Typography styles.</strong> Headings, body, captions use defined styles.</li>
+          <li><strong>Contrast WCAG AA.</strong> 4.5:1 body, 3:1 large text and non-text. Don't eyeball.</li>
+          <li><strong>All states.</strong> Empty, loading, error, partial failure, permission denied. AI loves the happy path.</li>
+          <li><strong>Responsive reality.</strong> Works at 320px, 768px, 1280px, and 200% zoom. Long text (40-char names) doesn't break layout.</li>
+          <li><strong>Accessibility.</strong> Visible focus, keyboard order matches visual, real labels (not placeholders), icon buttons have names.</li>
+          <li><strong>Design system fit.</strong> No near-duplicate components. Tone and interaction rules match the product.</li>
+          <li><strong>Data behaves.</strong> Real tables have 2 or 11,000 rows. Numbers can be negative. Dates can be far in the future or past.</li>
+          <li><strong>Content trust.</strong> Check claims, labels, and numbers against known treasury truth. Hallucinated hedge ratios or wrong maturity buckets are expensive.</li>
+        </ol>
+        <p>Common AI tells: Inter font everywhere, expressive serif headlines + mono data, generic "premium" spacing that ignores the actual density a trader needs.</p>
+      </div>
+      <div class="lesson">
+        <h2>Video references</h2>
+        <div class="video">
+          <a href="https://www.youtube.com/watch?v=x20QeqQOCpk" target="_blank">The only 5 product design skills that matter (Jesse Showalter, 2026)</a> — Taste & Critique section is relevant.
+        </div>
+        <div class="video">
+          Search: "AI design slop review checklist" or read the Design Theater paper for the benchmark approach.
+        </div>
+      </div>
+      <div class="quiz">
+        <h3>Quick check</h3>
+        <p>An AI generates a treasury liquidity ladder dashboard. It looks clean, uses nice gradients, and shows positive cumulative nets in every bucket. What is the most important thing to verify first?</p>
+        <button class="primary" onclick="alert('Correct approach: verify the numbers against known cash-flow reality and the maturity ladder math (inflows - outflows = net, cumulative running total). Visual polish is irrelevant if the gap is wrong. Also check empty/error states and whether long entity names break the layout.')">Reveal answer</button>
+      </div>
+    `
+  },
+  {
+    id: 2,
+    title: "Stage 2: Missing Agentic Components",
+    unlocked: false,
+    content: `
+      <div class="lesson">
+        <h2>What design systems still lack in late 2026</h2>
+        <p>From Setproduct's analysis of 16 agentic patterns: most systems still only have a chat bubble and a spinner. Neither is the right primitive. The six components that must exist before the first agent design review:</p>
+        <ul>
+          <li>Step status indicator (glyphs for pending → running → done → failed → skipped)</li>
+          <li>Tool call card (name, duration, collapsible I/O, tier badge)</li>
+          <li>Three-tier permission system (Read / Write / Destructive) with distinct visuals, not just color</li>
+          <li>Plan editor (draggable, editable, deletable steps)</li>
+          <li>Background progress pill</li>
+          <li>Diff summary block (resource counts, risk-sorted)</li>
+        </ul>
+        <p>Also critical: Confidence & Gaps footer (Verified / Assumed / Could not do), and a proper Handoff / Take-over control that carries the full ledger.</p>
+      </div>
+      <div class="lesson">
+        <h2>Designing retry without the infinite spinner</h2>
+        <p>The anti-pattern is a spinner that never resolves. The better pattern (drawn from production agent UIs and retry research):</p>
+        <div class="component-demo">
+          <div class="tool-card">
+            <strong>fetch_liquidity_ladder</strong> <span class="tier-badge tier-read">Read</span><br>
+            Attempt 2 of 3 • Waiting 4.2s (rate limit 429)<br>
+            <small>Next attempt in ~4s with jitter. <button>Take over</button></small>
+          </div>
+        </div>
+        <p>Show: attempt count, reason (transient vs permanent), estimated wait or next action, and an always-available Take over / Pause. Distinguish working from waiting. Persist the step ledger so the user never loses context.</p>
+        <p>Tiered permissions example:</p>
+        <div class="component-demo">
+          <span class="tier-badge tier-read">Read</span> no prompt<br>
+          <span class="tier-badge tier-write">Write</span> ask once per session per scope<br>
+          <span class="tier-badge tier-destructive">Destructive</span> ask every time, no "always allow"
+        </div>
+      </div>
+      <div class="lesson">
+        <h2>Video / reading</h2>
+        <div class="video">
+          <a href="https://www.setproduct.com/blog/ai-agent-ui-design-patterns" target="_blank">16 AI agent UI design patterns (Setproduct, Sep 2026)</a> — the source for the component list.
+        </div>
+        <div class="video">
+          <a href="https://departmentofproduct.substack.com/p/the-new-ux-of-ai-agents" target="_blank">The new UX of AI Agents (Department of Product)</a> — real-world examples of approvals and memory.
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 3,
+    title: "Stage 3: Agent Orchestration Logic",
+    unlocked: false,
+    content: `
+      <div class="lesson">
+        <h2>The failure decision tree</h2>
+        <p>Before any retry code, every failure must pass through a decision tree (synthesized from Wiro, SEM Nexus, and Microsoft orchestration patterns):</p>
+        <pre class="formula">
+Failure detected
+├── Transient infrastructure? (timeout, 429, 5xx)
+│   └── Yes → Exponential backoff + jitter (max 3–5), with durable idempotency key
+├── Semantic / schema validation?
+│   └── Yes → Re-prompt with corrective instruction (max 2)
+├── Detectable loop?
+│   └── Yes → Break, try alternate path or escalate
+├── Error budget exhausted?
+│   └── Yes → Escalate with full context packet
+└── Hard failure (auth, missing data, out of scope, policy)?
+    └── Escalate immediately with diagnosis + last safe state
+        </pre>
+        <p>Key rules:</p>
+        <ul>
+          <li>Tool calls with side effects are durable jobs, not function calls. Persist intent + idempotency key before delivery.</li>
+          <li>Checkpoint after every durable success (run ID, step ID, external ID).</li>
+          <li>Classify before retrying. Permanent errors (401, validation) never auto-retry.</li>
+          <li>Backoff formula: wait = min(cap, base * 2^attempt) + random_jitter.</li>
+          <li>Handoff packet must include: summary for a human, what was tried, why it stopped, last safe state, recommended next step.</li>
+        </ul>
+      </div>
+      <div class="lesson">
+        <h2>Why this matters for the UI</h2>
+        <p>The interface must surface the classification, not hide it behind a spinner. Users need to see "this is a rate limit, waiting with backoff" vs "this is an auth error, escalating." The Take-over control should hand the exact packet the decision tree produced.</p>
+      </div>
+    `
+  },
+  {
+    id: 4,
+    title: "Stage 4: Treasury Business Fundamentals",
+    unlocked: false,
+    content: `
+      <div class="lesson">
+        <h2>The rare combination</h2>
+        <p>Almost no one is podcasting the business side of treasury for designers. This is the differentiator. Domain knowledge makes your taste defensible and your evaluation sharp. You can sit with a CFO and talk about why a hedge ratio or duration gap matters before touching a pixel.</p>
+      </div>
+      <div class="lesson">
+        <h2>FX exposures — three types that need different UI</h2>
+        <ul>
+          <li><strong>Transactional (cash-flow):</strong> Rate moves between invoicing and settlement. Affects real cash. Hedge with forwards, options, or natural offsets. Example: Coca-Cola locking rates on international sales.</li>
+          <li><strong>Translational (accounting):</strong> Converting foreign subsidiary numbers into reporting currency. Non-cash but hits reported earnings and equity. Net investment hedges protect the CTA.</li>
+          <li><strong>Economic (competitive):</strong> Long-term impact on future cash flows and competitiveness. Hardest to quantify. Sustained currency strength can make exports expensive.</li>
+        </ul>
+        <p>Wrong tool for the wrong exposure manufactures new volatility. Dashboards must distinguish them clearly.</p>
+        <div class="video">
+          <a href="https://www.youtube.com/watch?v=hBa9ckn0Ye0" target="_blank">Corporate Finance Explained | How Companies Manage Currency Risk</a> — excellent breakdown of the three dimensions.
+        </div>
+      </div>
+      <div class="lesson">
+        <h2>ALM and the duration gap</h2>
+        <p>Asset-Liability Management manages the intentional mismatch between assets and liabilities. Headline risks: interest rate risk in the banking book (IRRBB) and structural liquidity.</p>
+        <p>Duration gap:</p>
+        <div class="formula">D_gap = D_A - (L/A) * D_L</div>
+        <p>Change in equity ≈ -D_gap × A × (Δr / (1+r))</p>
+        <p>Example (Meridian Bank style): Assets 10,000, Liabilities 9,200, D_A = 4.20, D_L = 1.60, r = 4% → D_gap ≈ 2.73 years. +200 bp shock destroys ~525 of economic value. This is why SVB failed — long assets, short liabilities. Closing the gap with pay-fixed swaps of notional ~6,820 would immunize.</p>
+        <p>Your dashboard must show the gap, the shock impact, and the hedge notional needed, not just pretty yield curves.</p>
+      </div>
+      <div class="lesson">
+        <h2>Liquidity / maturity ladder</h2>
+        <p>Projects contractual + behavioral inflows and outflows by time bucket, then cumulative net.</p>
+        <table>
+          <tr><th>Bucket</th><th>Inflows</th><th>Outflows</th><th>Net</th><th>Cumulative</th></tr>
+          <tr><td>Overnight</td><td>180</td><td>420</td><td>-240</td><td>-240</td></tr>
+          <tr><td>2–7 days</td><td>250</td><td>610</td><td>-360</td><td>-600</td></tr>
+          <tr><td>8–30 days</td><td>390</td><td>1,050</td><td>-660</td><td>-1,260</td></tr>
+        </table>
+        <p>30-day shortfall of 1,260. LCR compares high-quality liquid assets (with haircuts) against this. Behavioral assumptions (non-maturity deposits are sticky until stress) are critical and regulators cap them.</p>
+        <div class="video">
+          <a href="https://www.youtube.com/watch?v=cJnzYE3HShM" target="_blank">Corporate Finance Explained | Treasury Management</a>
+        </div>
+        <div class="video">
+          <a href="https://www.youtube.com/watch?v=_RM0DNV1aPY" target="_blank">Treasury and Liquidity Management</a>
+        </div>
+        <div class="video">
+          <a href="https://www.youtube.com/watch?v=sRaQhMLzG88" target="_blank">Building an ALM & Balance Sheet Optimization Model</a> — technical webinar.
+        </div>
+      </div>
+      <div class="lesson">
+        <h2>Hedge ladders and staggered tenors</h2>
+        <p>Instead of one big settlement date, stagger forwards (1×1M through 12×12M). Monthly cash flows drop dramatically (e.g., average absolute monthly from 2.66% to 0.82% of notional). Most benefit comes from the first few rungs. Trade-off is modest tracking error. This is a design opportunity: show the ladder, the smoothed cash-flow profile, and the residual risk.</p>
+        <p>HedgeFlows FX Academy has excellent written guides from FX 101 through constructing a full hedging programme.</p>
+      </div>
+      <div class="lesson">
+        <h2>How this changes the conversation</h2>
+        <p>When you can explain why the cumulative ladder is negative, what a duration gap of 2.7 years means under a 200 bp shock, and how staggering tenors reduces liquidity pressure, you are no longer "the designer who makes it look good." You are the person who understands the risk the dashboard is supposed to make visible. That is the edge.</p>
+      </div>
+    `
+  }
+];
+
+let currentStage = 1;
+let completed = JSON.parse(localStorage.getItem('treasuryAcademyCompleted') || '[]');
+
+function renderNav() {
+  const nav = document.getElementById('nav');
+  nav.innerHTML = stages.map(s => {
+    const isUnlocked = s.id === 1 || completed.includes(s.id - 1);
+    s.unlocked = isUnlocked;
+    return `<button class="stage-btn ${s.id === currentStage ? 'active' : ''}" 
+      ${!isUnlocked ? 'disabled' : ''} 
+      onclick="loadStage(${s.id})">${s.title}</button>`;
+  }).join('');
+}
+
+function loadStage(id) {
+  currentStage = id;
+  const stage = stages.find(s => s.id === id);
+  document.getElementById('content').innerHTML = stage.content + 
+    `<div style="margin-top:2rem"><button class="primary" onclick="completeStage(${id})">Mark Stage ${id} Complete & Unlock Next</button></div>`;
+  renderNav();
+  updateProgress();
+}
+
+function completeStage(id) {
+  if (!completed.includes(id)) completed.push(id);
+  localStorage.setItem('treasuryAcademyCompleted', JSON.stringify(completed));
+  alert('Stage marked complete. Next stage unlocked.');
+  if (id < stages.length) loadStage(id + 1);
+  else alert('Academy complete. You can now speak treasury with a CFO.');
+  renderNav();
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = (completed.length / stages.length) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+}
+
+renderNav();
+loadStage(1);
+</script>
+</body>
+</html>
